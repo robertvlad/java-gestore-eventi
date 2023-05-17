@@ -1,13 +1,49 @@
 package org.lessons.java;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	
 	public static void main(String[] args) {
+		
+		///////// BONUS
+		
+		ProgrammEventi eventsList = new ProgrammEventi("Concerti");
+
+		Evento event = new Evento("TEST 1", "10/01/2024", 100);
+		eventsList.addEvent(event);
+		Evento event1 = new Evento("TEST 2", "10/01/2024", 200);
+		eventsList.addEvent(event1);
+		Evento event2 = new Evento("TEST 3", "10/01/2024", 300);
+		eventsList.addEvent(event2);
+		Evento event3 = new Evento("TEST 4", "12/01/2024", 400);
+		eventsList.addEvent(event3);
+
+		System.out.println("There are " + eventsList.getEventsNumber() + " total events.");
+
+		String dateFilter = "10/01/2024";
+		
+		List<Evento> filteredEvents = eventsList.getEventsByDate(dateFilter);
+
+		System.out.println("\nOn the date " + dateFilter + " there are the following events:");
+
+		for (Evento filteredEvent : filteredEvents) {
+			
+			System.out.println(filteredEvent.toString());
+		}
+		
+		System.out.println("-------------------------------------------");
+		System.out.println("The whole list is:");
+		System.out.println(eventsList.eventsList());
+		System.out.println("-------------------------------------------");
+		
+		
+		///////// END BONUS
 		
 		Scanner scan = new Scanner(System.in);
 		
