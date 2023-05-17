@@ -36,12 +36,14 @@ public class Main {
             
             listEvents.add(firstEvent);
             System.out.println("We have added your event to our list.");
+            System.out.println("Thank you for creating an event.");
             System.out.println("-------------------------------------------");
             
-            String options;
+            String options, options2;
             
             do {
             	
+            	System.out.println("The max number of seats is: " + seats);
                 System.out.println("Do you want to reserve seats for the event? Press '1' to confirm or '2' to exit");
                 options = scan.nextLine();
                 
@@ -66,6 +68,34 @@ public class Main {
                             	listEvents.get(0).book();
                             
                             System.out.println("Thank you for booking seats.");
+                            System.out.println("You have booked: " + seatsToBook + " from " + seats + " total avaible.");
+                            System.out.println("-------------------------------------------");
+                            System.out.println(firstEvent);
+                            
+                            do {
+                            	
+                            	System.out.println("Do you want to confirm seats for the event? Press '1' to delete or '2' to confirm");
+                                options2 = scan.nextLine();
+                                
+                            }
+                            while (!options2.equals("1") && !options2.equals("2"));
+                            
+                            switch (options2) {
+                            
+	                            case "1":
+	                                int seatsToDelete = seatsToBook;
+	                                
+	                                for (int i = 0; i < seatsToDelete; i++)
+                                    	
+                                    	listEvents.get(0).cancel();
+                                    
+                                    System.out.println("Your seats have been deleted");
+                                    
+                                    
+                                    
+                               case "2":
+	                                System.out.println("Thank you, bye.");
+                            }       
                             
                         } 
                         catch (NumberFormatException e) {
@@ -78,11 +108,11 @@ public class Main {
                         }
                         
                     } 
-                    while (seatsToBook==0);
+                    while (seatsToBook == 0);
                     break;
 
                 case "2":
-                    System.out.println("Thank you for creating an event.");
+                    System.out.println("Thank you, bye.");
             }
         }
         
