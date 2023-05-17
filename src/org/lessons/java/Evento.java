@@ -11,13 +11,12 @@ public class Evento {
     private int totalSeats, totalSeatsReserved;
     
 
-    public Evento(String title, LocalDate date, int totalSeats) throws IllegalArgumentException {
+    public Evento (String title, String date, int totalSeats) throws IllegalArgumentException {
     	
-        validDate(date);
         validSeats(totalSeats);
 
         this.title = title;
-        this.date = date;
+        this.date = validDate(date);
         this.totalSeats = totalSeats;
         this.totalSeatsReserved = 0;
     }
@@ -39,10 +38,9 @@ public class Evento {
         return date;
     }
 
-    public void setDate(LocalDate date) throws IllegalArgumentException {
+    public void setDate(String date) throws IllegalArgumentException {
     	
-        validDate(date);
-        this.date = date;
+        this.date = validDate(date);
     }
 
     public int getTotalSeats() {
@@ -56,17 +54,20 @@ public class Evento {
     }
 
 
-    private void validDate(LocalDate date) throws IllegalArgumentException {
+    private LocalDate validDate(String date) throws IllegalArgumentException {
     	
-        if (date.isBefore(LocalDate.now())) {
+    	LocalDate dates = LocalDate.parse(date, format);
+    	
+        if (dates.isBefore(LocalDate.now())) {
         	
             throw new IllegalArgumentException("The date is in the past");
         }
+        return dates;
     }
     
     private void validSeats(int seats) throws IllegalArgumentException {
     	
-        if (seats<1) {
+        if (seats < 1) {
         	
             throw new IllegalArgumentException("There must be at least one place");
         }
@@ -79,7 +80,7 @@ public class Evento {
         	
             throw new Exception("Unable to book past events");
         } 
-        else if (totalSeats==totalSeatsReserved) {
+        else if (totalSeats == totalSeatsReserved) {
         	
             throw new Exception("The event is fully booked");
         } 
@@ -93,7 +94,7 @@ public class Evento {
         	
             throw new Exception("Impossible to cancel past events");
         } 
-        else if (totalSeatsReserved<1) {
+        else if (totalSeatsReserved < 1) {
         	
             throw new Exception("There are no reservations for this event");
         }else
