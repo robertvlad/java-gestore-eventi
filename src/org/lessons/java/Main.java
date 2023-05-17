@@ -20,13 +20,12 @@ public class Main {
         System.out.println("Enter the title of the event: ");
         title = scan.nextLine();
         System.out.println("The name of the event is: " + title);
-        System.out.println("-------------------------------------------");
-        
+        System.out.println("-------------------------------------------");        
         
 
         try {
         	
-            System.out.println("Enter the number of seats available to you: ");
+            System.out.println("Enter the number of seats for you event: ");
             seats = Integer.parseInt(scan.nextLine());
             
             System.out.println("Enter the date of your event in dd/mm/yyyy format :");
@@ -59,22 +58,34 @@ public class Main {
                         System.out.println("How many places do you want to book?");
                         
                         try {
+                        	
                         	seatsToBook = Integer.parseInt(scan.nextLine());
-                            for (int i =0; i <seatsToBook;i++)
+                        	
+                            for (int i = 0; i < seatsToBook; i++)
+                            	
                             	listEvents.get(0).book();
-                        } catch (NumberFormatException e) {
-                            System.out.println("Solo i numeri possono essere inseriti");
-                        } catch (Exception e) {
+                            
+                            System.out.println("Thank you for booking seats.");
+                            
+                        } 
+                        catch (NumberFormatException e) {
+                        	
+                            System.out.println("Only numbers can be entered");
+                        } 
+                        catch (Exception e) {
+                        	
                             System.out.println(e.getMessage());
                         }
-                    } while (seatsToBook==0);
-                    System.out.println("Grazie per aver prenotato dei posti.");
+                        
+                    } 
+                    while (seatsToBook==0);
                     break;
 
                 case "2":
-                    System.out.println("Grazie per aver creato un evento.");
+                    System.out.println("Thank you for creating an event.");
             }
-        } 
+        }
+        
         catch (IllegalArgumentException e) {
         	
             System.out.println(e.getMessage());
