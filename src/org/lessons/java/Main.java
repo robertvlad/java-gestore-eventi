@@ -1,5 +1,7 @@
 package org.lessons.java;
 
+import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,13 +11,14 @@ public class Main {
 		
 		Scanner scan = new Scanner(System.in);
 		
-        System.out.println("Hi, I'm here to help you with your booking"); 
+        System.out.println("Hi, I'm here to help you with your booking for your favorite Concert"); 
         System.out.println("-------------------------------------------");
         
         ArrayList<Evento> listEvents = new ArrayList<>();
 
         String title,date;
         int seats;
+ 
 
         System.out.println("Enter the title of the event: ");
         title = scan.nextLine();
@@ -27,14 +30,25 @@ public class Main {
         	
             System.out.println("Enter the number of seats for you event: ");
             seats = Integer.parseInt(scan.nextLine());
+            System.out.println("-------------------------------------------");
             
             System.out.println("Enter the date of your event in dd/mm/yyyy format :");
             date = scan.nextLine();
             System.out.println("-------------------------------------------");
+            
+            System.out.println("Enter the hour of your event in HH:mm format :");
+            LocalTime hour = LocalTime.parse(scan.next());
+            System.out.println("-------------------------------------------");
+            
+            System.out.println("Enter the price of your event ticket in $$ format without decimal :");
+            BigDecimal price = scan.nextBigDecimal();
 
-            Evento firstEvent = new Evento(title, date, seats);
+            // Evento firstEvent = new Evento(title, date, seats);
+            Concerto firstEvent = new Concerto(title, date, seats, hour, price);
             
             listEvents.add(firstEvent);
+            System.out.println(firstEvent);
+            
             System.out.println("We have added your event to our list.");
             System.out.println("Thank you for creating an event.");
             System.out.println("-------------------------------------------");
